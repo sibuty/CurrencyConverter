@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+  compileSdkVersion versions.COMPILE_SDK
+  buildToolsVersion versions.BUILD_TOOLS
+
+  defaultConfig {
+    applicationId "org.seriouslycompany.cc"
+    minSdkVersion versions.MIN_SDK
+    targetSdkVersion versions.TARGET_SDK
+    multiDexEnabled = true
+    versionName appVersion
+    versionCode buildNumber
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    buildConfigField "String", "SERVER_URL", "\"https://api.fixer.io/\""
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  packagingOptions {
+    exclude 'META-INF/LICENSE'
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.KOTLIN"
+  implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.KOTLIN"
+
+  implementation "com.google.dagger:dagger:$versions.DAGGER"
+  implementation "com.google.dagger:dagger-android:$versions.DAGGER"
+  kapt "com.google.dagger:dagger-compiler:$versions.DAGGER"
+
+  implementation "io.reactivex.rxjava2:rxjava:$versions.RXJAVA"
+  implementation "io.reactivex.rxjava2:rxandroid:$versions.RXANDROID"
+  implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$versions.RXBINDINGS"
+  implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$versions.RXBINDINGS"
+  implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$versions.RXBINDINGS"
+  implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$versions.RXBINDINGS"
+
+  implementation "com.squareup.retrofit2:retrofit:$versions.RETROFIT"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.RETROFIT"
+  implementation "com.squareup.retrofit2:converter-jackson:$versions.RETROFIT"
+  implementation "com.squareup.okhttp3:logging-interceptor:$versions.OKHTTP3"
+  implementation "com.squareup.okhttp3:okhttp:$versions.OKHTTP3"
+
+  implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$versions.JACKSON_KOTLIN"
+
+  implementation "com.android.support:multidex:$versions.MULTIDEX"
+  implementation "com.android.support:appcompat-v7:$versions.SUPPORT"
+  implementation "com.android.support:design:$versions.SUPPORT"
+  implementation "com.android.support.constraint:constraint-layout:$versions.CONSTRAINT_LAYOUT"
+
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'com.android.support.test:runner:1.0.1'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

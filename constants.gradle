@@ -1,0 +1,25 @@
+/*
+ *
+ * Copyright (C) 2017, Igor Goryainov
+ * All rights reserved.
+ */
+ext.versions = [ANDROID_GRADLE   : "3.0.1",
+                KOTLIN           : "1.2.21",
+                COMPILE_SDK      : 26,
+                BUILD_TOOLS      : "26.0.2",
+                MIN_SDK          : 19,
+                TARGET_SDK       : 26,
+                SUPPORT          : "27.0.2",
+                MULTIDEX         : "1.0.1",
+                DAGGER           : "2.11",
+                RXJAVA           : "2.1.0",
+                RXANDROID        : "2.0.1",
+                RXBINDINGS       : "2.0.0",
+                RETROFIT         : "2.3.0",
+                JACKSON_KOTLIN   : "2.9.0",
+                OKHTTP3          : "3.9.0",
+                CONSTRAINT_LAYOUT: "1.0.2",
+                KOTLIN_MOCKITO   : "1.4.0"]
+
+ext.appVersion = "0.0.1"
+ext.buildNumber = 0
