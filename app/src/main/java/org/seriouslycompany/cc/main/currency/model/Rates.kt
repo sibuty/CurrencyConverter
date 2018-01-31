@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder
 /**
  */
 @JsonPropertyOrder("base", "date", "rates")
-class Currency {
+class Rates {
 
   @get:JsonProperty("base")
   @set:JsonProperty("base")
@@ -22,5 +22,7 @@ class Currency {
   var date: String? = ""
   @get:JsonProperty("rates")
   @set:JsonProperty("rates")
-  var rates: LinkedHashMap<String, Double>? = LinkedHashMap()
+  var rates: LinkedHashMap<String, Double> = LinkedHashMap()
+
+  fun toIsoCodes() : List<String> = rates.run { keys.toMutableList().apply { base?.also { add(it) } }.apply { sort() } }
 }

@@ -11,11 +11,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import dagger.BindsInstance
 import dagger.Component
 import org.seriouslycompany.cc.base.provider.rest.Api
+import org.seriouslycompany.cc.main.currency.model.provider.RatesProviderModule
+import org.seriouslycompany.cc.main.currency.model.repository.CurrencyRepository
 
 /**
  */
 @AppScope
-@Component(modules = arrayOf(JsonModule::class, RestModule::class))
+@Component(modules = arrayOf(JsonModule::class, RestModule::class, RatesProviderModule::class, CurrencyRepository::class))
 abstract class AppComponent {
 
   abstract val application: Application

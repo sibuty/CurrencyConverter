@@ -6,41 +6,18 @@
 
 package org.seriouslycompany.cc.base.provider.rest
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import io.reactivex.Observable
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import org.seriouslycompany.cc.BuildConfig
-import org.seriouslycompany.cc.main.currency.model.Currency
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.jackson.JacksonConverterFactory
+import io.reactivex.Single
+import org.seriouslycompany.cc.main.currency.model.Rates
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
  */
 interface Api {
 
   @GET("latest")
-  fun getInfo(): Observable<Currency>
+  fun getInfo(): Single<Rates>
 
-  companion object {
-
-    fun create(baseUrl: String, mapper: ObjectMapper = ObjectMapper()): Api = Retrofit.Builder()
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(JacksonConverterFactory.create(mapper.registerKotlinModule()))
-        .apply {
-          if (BuildConfig.DEBUG) {
-            client(
-                OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build()
-            )
-          }
-        }
-        .baseUrl(baseUrl)
-        .build()
-        .create(Api::class.java)
-  }
+  @GET("latest")
+  fun rate(@Query("base") isoCodeIn: String, @Query("symbols") isoCodeOut: String): Single<Rates>
 }
