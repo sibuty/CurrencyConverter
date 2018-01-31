@@ -4,18 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/currency_item_padding"
     tools:context="org.seriouslycompany.cc.main.MainActivity"
     >
 
-  <TextView
-      android:id="@+id/hooj"
-      android:layout_width="wrap_content"
+  <EditText
+      android:id="@+id/et_first_currency"
+      android:layout_width="0dp"
       android:layout_height="wrap_content"
-      android:text="Hello World!"
-      app:layout_constraintBottom_toBottomOf="parent"
+      android:background="@drawable/gray_stroke_corners_background"
+      app:layout_constraintBottom_toTopOf="@+id/et_second_currency"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintRight_toLeftOf="@+id/s_first_currency"
       app:layout_constraintTop_toTopOf="parent"
+      />
+
+  <EditText
+      android:id="@+id/et_second_currency"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/offset_default"
+      android:background="@drawable/gray_stroke_corners_background"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toLeftOf="@+id/s_second_currency"
+      app:layout_constraintTop_toBottomOf="@+id/et_first_currency"
+      />
+
+  <android.support.v7.widget.AppCompatSpinner
+      android:id="@+id/s_first_currency"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginStart="@dimen/offset_default"
+      app:layout_constraintBottom_toBottomOf="@+id/et_first_currency"
+      app:layout_constraintLeft_toRightOf="@+id/et_first_currency"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/et_first_currency"
+      />
+
+  <android.support.v7.widget.AppCompatSpinner
+      android:id="@+id/s_second_currency"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginStart="@dimen/offset_default"
+      app:layout_constraintBottom_toBottomOf="@+id/et_second_currency"
+      app:layout_constraintLeft_toRightOf="@+id/et_second_currency"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/et_second_currency"
       />
 
 </android.support.constraint.ConstraintLayout>

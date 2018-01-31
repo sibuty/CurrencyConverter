@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~
+  ~ Copyright (C) 2017, Igor Goryainov
+  ~ All rights reserved.
+  -->
+
+<resources>
+  <dimen name="currency_item_height">40dp</dimen>
+  <dimen name="currency_item_padding">@dimen/offset_default</dimen>
+  <dimen name="offset_default">8dp</dimen>
+</resources>
