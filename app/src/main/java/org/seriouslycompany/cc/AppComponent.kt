@@ -9,6 +9,7 @@ package org.seriouslycompany.cc
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import org.seriouslycompany.cc.main.currency.model.provider.RatesProvider
 import org.seriouslycompany.cc.main.currency.model.repository.CurrencyRepository
 
 /**
@@ -19,6 +20,7 @@ abstract class AppComponent {
 
   abstract val application: Application
   abstract val currencyRepository: CurrencyRepository
+  abstract val ratesProvider: RatesProvider
 
   @Component.Builder
   interface Builder {

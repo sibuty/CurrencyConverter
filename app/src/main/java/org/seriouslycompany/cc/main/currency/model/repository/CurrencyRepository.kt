@@ -7,7 +7,6 @@
 package org.seriouslycompany.cc.main.currency.model.repository
 
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import org.seriouslycompany.cc.AppScope
 import org.seriouslycompany.cc.main.currency.model.provider.RatesProvider
@@ -29,7 +28,8 @@ class CurrencyRepository @Inject constructor(private val ratesProvider: RatesPro
     return currencyCodesPublisher
   }
 
-  private fun loadCurrencies() = ratesProvider.isoCodes().subscribeOn(Schedulers.io()).subscribe(currencyCodesPublisher::onNext)
+  private fun loadCurrencies() = ratesProvider.isoCodes()
+      .subscribe(currencyCodesPublisher::onNext, { it.printStackTrace(); currencyCodesPublisher.onNext(emptyList())})
 
   fun convertableCurrenciesFor(currencyCode: String) = currencyList().map { it.filter { it != currencyCode } }
 
