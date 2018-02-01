@@ -7,12 +7,15 @@
 package org.seriouslycompany.cc.main.currency.model.provider
 
 import io.reactivex.Single
+import org.seriouslycompany.cc.AppScope
 import org.seriouslycompany.cc.base.provider.rest.Api
 import org.seriouslycompany.cc.main.currency.model.Rates
+import javax.inject.Inject
 
 /**
  */
-class RatesProvider(val api: Api) {
+@AppScope
+class RatesProvider @Inject constructor(val api: Api) {
 
   fun isoCodes(): Single<List<String>> = api.getInfo().map(Rates::toIsoCodes)
 

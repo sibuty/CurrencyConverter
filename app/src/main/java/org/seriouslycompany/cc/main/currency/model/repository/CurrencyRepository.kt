@@ -7,12 +7,16 @@
 package org.seriouslycompany.cc.main.currency.model.repository
 
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import org.seriouslycompany.cc.AppScope
 import org.seriouslycompany.cc.main.currency.model.provider.RatesProvider
+import javax.inject.Inject
 
 /**
  */
-class CurrencyRepository(private val ratesProvider: RatesProvider) {
+@AppScope
+class CurrencyRepository @Inject constructor(private val ratesProvider: RatesProvider) {
 
   private val currencyCodesPublisher = BehaviorSubject.create<List<String>>()
 
@@ -25,11 +29,12 @@ class CurrencyRepository(private val ratesProvider: RatesProvider) {
     return currencyCodesPublisher
   }
 
-  private fun loadCurrencies() = ratesProvider.isoCodes().subscribe(currencyCodesPublisher::onNext)
+  private fun loadCurrencies() = ratesProvider.isoCodes().subscribeOn(Schedulers.io()).subscribe(currencyCodesPublisher::onNext)
 
   fun convertableCurrenciesFor(currencyCode: String) = currencyList().map { it.filter { it != currencyCode } }
 
-  fun convertableCurrenciesFor(currencyCodeEmitter: Observable<String>) = currencyCodeEmitter.concatMap { convertableCurrenciesFor(it) }
+  fun convertableCurrenciesFor(currencyCodeEmitter: Observable<String>): Observable<List<String>>
+      = currencyCodeEmitter.concatMap(::convertableCurrenciesFor)
 
 
 }
