@@ -13,13 +13,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import org.seriouslycompany.cc.R
+import java.util.*
 
 /**
  */
 class CurrencyArrayAdapter(
     context: Context,
-    objects: MutableList<String>
-) : ArrayAdapter<String>(context, 0, 0, objects) {
+    objects: List<Currency>
+) : ArrayAdapter<Currency>(context, 0, 0, objects) {
 
   override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
     return customView(position, convertView, parent)
@@ -33,7 +34,7 @@ class CurrencyArrayAdapter(
     ViewHolder(LayoutInflater.from(context).inflate(R.layout.currency_item, parent, false)).apply { view?.tag = this }
   } else {
     convertView.tag as ViewHolder
-  }.view!!.apply { (findViewById<TextView>(R.id.tv_currency_name)).text = getItem(position) }
+  }.view!!.apply { (findViewById<TextView>(R.id.tv_currency_name)).text = getItem(position).displayName }
 }
 
 class ViewHolder(var view: View? = null)
