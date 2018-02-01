@@ -1,59 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/srl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/currency_item_padding"
     tools:context="org.seriouslycompany.cc.main.MainActivity"
     >
 
-  <EditText
-      android:id="@+id/et_first_currency"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:background="@drawable/corners_background"
-      android:inputType="numberDecimal"
-      android:maxLines="1"
-      app:layout_constraintBottom_toTopOf="@+id/et_second_currency"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toLeftOf="@+id/s_first_currency"
-      app:layout_constraintTop_toTopOf="parent"
-      />
+  <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="@dimen/currency_item_padding"
+      >
 
-  <EditText
-      android:id="@+id/et_second_currency"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/offset_default"
-      android:background="@drawable/corners_background"
-      android:inputType="numberDecimal"
-      android:maxLines="1"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toLeftOf="@+id/s_second_currency"
-      app:layout_constraintTop_toBottomOf="@+id/et_first_currency"
-      />
+    <EditText
+        android:id="@+id/et_first_currency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corners_background"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/et_second_currency"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/s_first_currency"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
 
-  <android.support.v7.widget.AppCompatSpinner
-      android:id="@+id/s_first_currency"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginStart="@dimen/offset_default"
-      app:layout_constraintBottom_toBottomOf="@+id/et_first_currency"
-      app:layout_constraintLeft_toRightOf="@+id/et_first_currency"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/et_first_currency"
-      />
+    <EditText
+        android:id="@+id/et_second_currency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_default"
+        android:background="@drawable/corners_background"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/s_second_currency"
+        app:layout_constraintTop_toBottomOf="@+id/et_first_currency"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
 
-  <android.support.v7.widget.AppCompatSpinner
-      android:id="@+id/s_second_currency"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:layout_marginStart="@dimen/offset_default"
-      app:layout_constraintBottom_toBottomOf="@+id/et_second_currency"
-      app:layout_constraintLeft_toRightOf="@+id/et_second_currency"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/et_second_currency"
-      />
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/s_first_currency"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/offset_default"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/et_first_currency"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@+id/et_first_currency"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_first_currency"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/s_second_currency"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/offset_default"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/et_second_currency"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@+id/et_second_currency"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_second_currency"
+        />
+
+  </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
